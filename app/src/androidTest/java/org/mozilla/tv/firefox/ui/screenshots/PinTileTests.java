@@ -23,7 +23,10 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.mozilla.tv.firefox.MainActivity;
 import org.mozilla.tv.firefox.R;
+import org.mozilla.tv.firefox.components.locale.LocaleManager;
 import org.mozilla.tv.firefox.helpers.MainActivityTestRule;
+
+import java.util.Locale;
 
 import tools.fastlane.screengrab.Screengrab;
 import tools.fastlane.screengrab.locale.LocaleTestRule;
@@ -60,6 +63,9 @@ public class PinTileTests extends ScreenshotTest {
     @Test
     public void unpinTileFromContextMenu() {
         onView(allOf(withId(R.id.navUrlInput), isDisplayed(), hasFocus()));
+
+        final Locale currentLocale = LocaleManager.getInstance()
+                .getCurrentLocale(mActivityTestRule.getActivity());
 
         mDevice.pressDPadDown();
 
